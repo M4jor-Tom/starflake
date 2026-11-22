@@ -1,0 +1,35 @@
+---
+name: Report a problem
+description: Something in Starflake does not work as it should.
+labels: [triage, bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How can we make it happen again?
+      description: The steps you took, if you remember them.
+  - type: input
+    id: version
+    attributes:
+      label: Game version
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Linux
+        - Windows
+        - macOS
+        - Other

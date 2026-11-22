@@ -1,0 +1,15 @@
+---
+name: Suggest an idea
+description: Something you would like Starflake to let you do.
+labels: [triage, enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to be able to do?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it matter to you?
