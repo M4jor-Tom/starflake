@@ -24,7 +24,7 @@ snapshot-check:
 
 # Record the checked-out commits of game, design and ontology as one workspace commit.
 snapshot message="chore: snapshot":
-    tools/snapshot.sh record "{{ message }}"
+    tools/snapshot.sh record {{ quote(message) }}
 
 # Create or update the shared labels in the workspace repository and every component repository.
 labels:
