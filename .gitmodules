@@ -1,0 +1,12 @@
+[submodule "game"]
+	path = game
+	url = https://github.com/M4jor-Tom/starflake.game.cs.git
+	branch = master
+[submodule "design"]
+	path = design
+	url = https://github.com/M4jor-Tom/starflake.design.git
+	branch = master
+[submodule "ontology"]
+	path = ontology
+	url = https://github.com/M4jor-Tom/starflake.ontology.linkml.git
+	branch = master

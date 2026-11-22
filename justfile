@@ -8,6 +8,7 @@ lint:
     shellcheck .githooks/pre-push tools/*.sh tests/*.sh
     yamllint .github
     actionlint
+    markdownlint-cli2 README.md
 
 # Test tools/snapshot.sh against fixture repositories.
 snapshot-test:
