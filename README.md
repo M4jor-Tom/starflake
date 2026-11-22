@@ -24,6 +24,17 @@ A snapshot records what was checked out together. The game builds against the
 versions in `game/ontology.lock` and `game/design.lock`, which may differ from
 the `design` and `ontology` commits of the same snapshot.
 
+## Generate C# from a LinkML schema
+
+The workspace shell includes `gen-csharp`; no separate checkout or Python setup
+is needed. For example, to generate the ontology classes into a fresh directory:
+
+```sh
+out=$(mktemp -d)
+schema=ontology/src/starflake_ontology/schema/starflake_ontology.yaml
+nix develop -c gen-csharp "$schema" -d "$out"
+```
+
 ## Report a problem
 
 Report problems and ideas for any part of Starflake in one place:

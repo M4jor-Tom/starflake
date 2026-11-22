@@ -2,9 +2,11 @@
   description = "Starflake workspace development shell";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.linkml-csharp.url = "github:M4jor-Tom/linkml-csharp";
+  inputs.linkml-csharp.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs =
-    { nixpkgs, ... }:
+    { nixpkgs, linkml-csharp, ... }:
     {
       devShells =
         nixpkgs.lib.genAttrs
@@ -20,6 +22,7 @@
             {
               default = pkgs.mkShell {
                 packages = [
+                  linkml-csharp.packages.${system}.default
                   pkgs.just
                   pkgs.gh
                   pkgs.yq-go
