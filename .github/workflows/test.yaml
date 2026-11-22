@@ -1,0 +1,28 @@
+---
+name: Test
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+  pull_request:
+
+permissions: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+          submodules: recursive
+          # The snapshot check needs each submodule's history, not one commit.
+          fetch-depth: 0
+
+      # The same tools as `nix develop` gives locally.
+      - name: Install Nix
+        uses: cachix/install-nix-action@v32.0.0
+
+      - name: Run every check
+        run: nix develop --command just test
