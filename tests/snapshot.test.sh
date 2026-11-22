@@ -122,13 +122,11 @@ expect 0 '' "$S" record m
 
 # message-quoting: `just snapshot` passes the message through untouched.
 reset
-ln -s "$(dirname "$S")" "$ws/tools"
 checkout "$T"
 # shellcheck disable=SC2016 # $HOME and `id` must reach git unexpanded.
 msg='fix: say "hi" to $HOME `id`'
 expect 0 '' just --justfile "$(dirname "$S")/../justfile" --working-directory "$ws" snapshot "$msg"
 [[ $(git -C "$ws" log -1 --format=%B) == "$msg" ]] || fail "message-quoting: recorded '$(git -C "$ws" log -1 --format=%B)'"
-rm "$ws/tools"
 
 # unreachable-url
 reset
