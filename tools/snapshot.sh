@@ -29,8 +29,7 @@ reachable() {
     echo "snapshot: cannot fetch $url" >&2
     return 1
   fi
-  if git -C "$path" merge-base --is-ancestor "$sha" refs/snapshot-check/master 2>/dev/null ||
-    [[ -n $(git -C "$path" for-each-ref --contains "$sha" refs/snapshot-check/tags 2>/dev/null) ]]; then
+  if [[ -n $(git -C "$path" for-each-ref --contains "$sha" refs/snapshot-check/ 2>/dev/null) ]]; then
     return 0
   fi
   echo "snapshot: $path $sha is not on master or a tag of $url" >&2
@@ -45,9 +44,7 @@ paths=()
 for entry in "${entries[@]}"; do
   key=${entry%% *}
   path=${entry#* }
-  name=${key#submodule.}
-  name=${name%.path}
-  url=$(git config -f .gitmodules "submodule.$name.url")
+  url=$(git config -f .gitmodules "${key%.path}.url")
   paths+=("$path")
   if [[ ! -e $path/.git ]]; then
     echo "snapshot: $path is not checked out; run: git submodule update --init" >&2
