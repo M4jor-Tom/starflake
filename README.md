@@ -31,8 +31,8 @@ is needed. For example, to generate the ontology classes into a fresh directory:
 
 ```sh
 out=$(mktemp -d)
-schema=ontology/src/starflake_ontology/schema/starflake_ontology.yaml
-nix develop -c gen-csharp "$schema" -d "$out"
+schema=$(git -C ontology ls-files 'src/*starflake_ontology.yaml')
+nix develop -c gen-csharp "ontology/$schema" -d "$out"
 ```
 
 ## Report a problem
